@@ -6,8 +6,8 @@ public class Bibliotek {
     public Bibliotek() {
     }
 
-    public void tilfoejBog (int nr, String t, String f, boolean u, String d) {
-        Bog b = new Bog(nr, t, f, u, d);
+    public void tilfoejBog (int nr, String t, String f) {
+        Bog b = new Bog(nr, t, f, false, "");
         bogListe.add(b);
     }
 
@@ -23,6 +23,13 @@ public class Bibliotek {
         for (int i = 0; i < bogListe.size(); i++){
             if (bogListe.get(i).getBogId() == nr){
                 bogListe.get(i).udlaanBog(la, d);
+            }
+        }
+    }
+    public void afleverBog (int nr){
+        for (int i = 0; i < bogListe.size(); i++){
+            if (bogListe.get(i).getBogId() == nr){
+                bogListe.get(i).afleverBog();
             }
         }
     }

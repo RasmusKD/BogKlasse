@@ -1,14 +1,72 @@
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws FileNotFoundException {
+        File fil = new File("bogfil.txt");
+        File fil1 = new File("laanerfil.txt");
+        Scanner frafilinput = new Scanner(fil);
+        Scanner fralaanerfilinput = new Scanner(fil1);
+        Scanner fratastetur = new Scanner(System.in);
         Bibliotek bib = new Bibliotek();
-        bib.tilfoejBog(1,"Titel1", "Forfatter1", false, "");
+        System.out.println("1. Opret bog");
+        System.out.println("2. Opret Låner");
+        System.out.println("3. Udlån bog");
+        System.out.println("4. Aflever bog");
+        System.out.println("5. Fjern bog");
+        System.out.println("6. Fjern låner");
+        System.out.println("7. Stop programmet");
+
+        int valg = 0;
+        String forfatter;
+        String titel;
+        String dato;
+        int lnr;
+        String lnavn;
+        int bogId;
+
+        while (valg != 7){
+            System.out.println("Indtast valg");
+            valg = fratastetur.nextInt();
+            switch (valg){
+                case 1:
+                    System.out.println("Indtast bognr, titel & forfatter:");
+                    bogId = frafilinput.nextInt();
+                    titel = frafilinput.next();
+                    forfatter = frafilinput.next();
+                    bib.tilfoejBog(bogId, titel, forfatter);
+                    System.out.println(bib);
+                    break;
+                case 2:
+                    System.out.println("");
+                case 3:
+                    System.out.println("Indtast bognr og dato");
+                    bogId = fratastetur.nextInt();
+                    lnr = fralaanerfilinput.nextInt();
+                    lnavn = fralaanerfilinput.next();
+                    dato = fratastetur.next();
+                    System.out.println(bib);
+
+                    bib.udlaanBog(bogId, lnr, lnavn, dato);
+                    System.out.println(bib);
+                    break;
+                case 4:
+                    System.out.println("Indtast bognr");
+                    bogId = fratastetur.nextInt();
+                    bib.afleverBog(bogId);
+                    System.out.println(bib);
+                    break;
+
+            }
+
+        }
+
+        /*bib.tilfoejBog(1,"Titel1", "Forfatter1", false, "");
         bib.tilfoejBog(2,"Titel2", "Forfatter2", false, "");
         System.out.println(bib);
         bib.udlaanBog(1,1,"Rasmus", "30/10/2023");
-        System.out.println(bib);
+        System.out.println(bib);*/
 
     }
 
