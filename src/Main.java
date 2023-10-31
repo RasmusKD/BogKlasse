@@ -10,6 +10,7 @@ public class Main {
         Scanner fralaanerfilinput = new Scanner(fil1);
         Scanner fratastetur = new Scanner(System.in);
         Bibliotek bib = new Bibliotek();
+        Laanere lListe = new Laanere();
         System.out.println("1. Opret bog");
         System.out.println("2. Opret Låner");
         System.out.println("3. Udlån bog");
@@ -17,6 +18,7 @@ public class Main {
         System.out.println("5. Fjern bog");
         System.out.println("6. Fjern låner");
         System.out.println("7. Stop programmet");
+        System.out.println("8. Indlæs alle bøger fra filen");
 
         int valg = 0;
         String forfatter;
@@ -39,7 +41,12 @@ public class Main {
                     System.out.println(bib);
                     break;
                 case 2:
-                    System.out.println("");
+                    System.out.println("Indtast låner nr og låner navn");
+                    lnr = fralaanerfilinput.nextInt();
+                    lnavn = fralaanerfilinput.next();
+                    System.out.println(lListe);
+                    lListe.tilfoejLaaner(lnr, lnavn);
+                    System.out.println(lListe);
                 case 3:
                     System.out.println("Indtast bognr og dato");
                     bogId = fratastetur.nextInt();
@@ -57,7 +64,16 @@ public class Main {
                     bib.afleverBog(bogId);
                     System.out.println(bib);
                     break;
-
+                case 5:
+                    System.out.println("Indtast bognr");
+                    bogId = fratastetur.nextInt();
+                    bib.fjernBog(bogId);
+                    System.out.println(bib);
+                    break;
+                case 8:
+                    bib.indlaesAlleBoeger();
+                    System.out.println(bib);
+                    break;
             }
 
         }

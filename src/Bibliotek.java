@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Bibliotek {
     private ArrayList<Bog> bogListe = new ArrayList<>();
@@ -32,6 +35,20 @@ public class Bibliotek {
                 bogListe.get(i).afleverBog();
             }
         }
+    }
+
+    public void indlaesAlleBoeger () throws FileNotFoundException {
+        File fil = new File("bogfil.txt");
+        Scanner inputfrafil = new Scanner(fil);
+        int nr;
+        String t, f;
+        while (inputfrafil.hasNext()){
+            nr = inputfrafil.nextInt();
+            t = inputfrafil.next();
+            f = inputfrafil.next();
+            bogListe.add(new Bog(nr, t, f, false, ""));
+        }
+
     }
 
     @Override
